@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Test</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+  <link rel="stylesheet" href="create-test.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Create Test</h2>
+    <form id="createTestForm">
+      <div class="form-group">
+        <label for="subjectCode">Subject Code:</label>
+        <input type="text" id="subjectCode" name="subjectCode" required><br>
+      </div>
+      <div class="form-group">
+        <label for="timer">Timer (minutes):</label>
+        <input type="number" id="timer" name="timer" min="1" required><br>
+      </div>
+      <div id="questionsContainer">
+        <div class="question">
+          <label for="questionText">Question:</label>
+          <input type="text" id="questionText" name="questionText" required><br>
+          <div class="options-container">
+            <label for="option1">Option 1:</label>
+            <input type="text" id="option1" name="options" required><br>
+            <label for="option2">Option 2:</label>
+            <input type="text" id="option2" name="options" required><br>
+            <label for="option3">Option 3:</label>
+            <input type="text" id="option3" name="options" required><br>
+            <label for="option4">Option 4:</label>
+            <input type="text" id="option4" name="options" required><br>
+          </div>
+          <label for="correctAnswer">Correct Answer:</label>
+          <select id="correctAnswer" name="correctAnswer" required>
+            <option value="">Select correct answer</option>
+            <option value="option1">Option 1</option>
+            <option value="option2">Option 2</option>
+            <option value="option3">Option 3</option>
+            <option value="option4">Option 4</option>
+          </select><br>
+        </div>
+      </div>
+      <button type="button" class="add-question-btn" onclick="addQuestion()">Add Another Question</button><br>
+      <button type="submit" class="create-test-btn">Create Test</button>
+    </form>
+  </div>
+
+  <script>
+    function addQuestion() {
+      const questionContainer = document.getElementById('questionsContainer');
+      const newQuestion = document.createElement('div');
+      newQuestion.className = 'question';
+      newQuestion.innerHTML = `
+        <label for="questionText">Question:</label>
+        <input type="text" id="questionText" name="questionText" required><br>
+        <div class="options-container">
+          <label for="option1">Option 1:</label>
+          <input type="text" id="option1" name="options" required><br>
+          <label for="option2">Option 2:</label>
+          <input type="text" id="option2" name="options" required><br>
+          <label for="option3">Option 3:</label>
+          <input type="text" id="option3" name="options" required><br>
+          <label for="option4">Option 4:</label>
+          <input type="text" id="option4" name="options" required><br>
+        </div>
+        <label for="correctAnswer">Correct Answer:</label>
+        <select id="correctAnswer" name="correctAnswer" required>
+          <option value="">Select correct answer</option>
+          <option value="option1">Option 1</option>
+          <option value="option2">Option 2</option>
+          <option value="option3">Option 3</option>
+          <option value="option4">Option 4</option>
+        </select><br>
+      `;
+      questionContainer.appendChild(newQuestion);
+    }
+
+    document.getElementById('createTestForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const subjectCode = document.getElementById('subjectCode').value;
+      const timer = document.getElementById('timer').value;
+      const questions = Array.from(document.querySelectorAll('.question')).map(q => ({
+        questionText: q.querySelector('[name="questionText"]').value,
+        options: Array.from(q.querySelectorAll('[name="options"]')).map(opt => opt.value.trim()),
+        correctAnswer: q.querySelector('[name="correctAnswer"]').value,
+      }));
+
+      const response = await fetch('/create-test', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ subjectCode, timer, questions }),
+      });
+
+      if (response.ok) {
+        alert('Test created successfully');
+        document.getElementById('createTestForm').reset();
+        document.getElementById('questionsContainer').innerHTML = `
+          <div class="question">
+            <label for="questionText">Question:</label>
+            <input type="text" id="questionText" name="questionText" required><br>
+            <div class="options-container">
+              <label for="option1">Option 1:</label>
+              <input type="text" id="option1" name="options" required><br>
+              <label for="option2">Option 2:</label>
+              <input type="text" id="option2" name="options" required><br>
+              <label for="option3">Option 3:</label>
+              <input type="text" id="option3" name="options" required><br>
+              <label for="option4">Option 4:</label>
+              <input type="text" id="option4" name="options" required><br>
+            </div>
+            <label for="correctAnswer">Correct Answer:</label>
+            <select id="correctAnswer" name="correctAnswer" required>
+              <option value="">Select correct answer</option>
+              <option value="option1">Option 1</option>
+              <option value="option2">Option 2</option>
+              <option value="option3">Option 3</option>
+              <option value="option4">Option 4</option>
+            </select><br>
+          </div>
+        `;
+      } else {
+        alert('Error creating test');
+      }
+    });
+  </script>
+</body>
+</html>

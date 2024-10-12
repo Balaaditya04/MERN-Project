@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/d4b6d93ef0.js" crossorigin="anonymous"></script>
+  <link
+      rel="stylesheet"
+      data-purpose="Layout StyleSheet"
+      title="Web Awesome"
+      href="/css/app-wa-fba26eda6a3fd6b4d0ce0def1e2ba1d7.css?vsn=d"
+    >
+
+      <link
+        rel="stylesheet"
+        href="https://site-assets.fontawesome.com/releases/v6.5.1/css/all.css"
+      >
+
+      <link
+        rel="stylesheet"
+        href="https://site-assets.fontawesome.com/releases/v6.5.1/css/sharp-thin.css"
+      >
+
+      <link
+        rel="stylesheet"
+        href="https://site-assets.fontawesome.com/releases/v6.5.1/css/sharp-solid.css"
+      >
+
+      <link
+        rel="stylesheet"
+        href="https://site-assets.fontawesome.com/releases/v6.5.1/css/sharp-regular.css"
+      >
+
+      <link
+        rel="stylesheet"
+        href="https://site-assets.fontawesome.com/releases/v6.5.1/css/sharp-light.css"
+      >
+
+      
+      <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+  <title>School Portal</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Navbar section -->
+  <nav>
+    <div class="container-1">
+      <div class="logo">
+        <img src="logo2.png">
+      </div>
+      <div class="home">
+        <a href="#" onclick="scrollToSection('home')"><h3>Home</h3></a>
+      </div>
+      <div class="features">
+        <a href="#" onclick="scrollToSection('features')"><h3>Features</h3></a>
+      </div>
+      <div class="About">
+        <a href="about.html"><h3>About Us</h3></a>
+      </div>
+      <div class="contact">
+        <a href="contact.html"><h3>Contact</h3></a>
+      </div>
+      <div class="buttons">
+        <div class="btn1">
+          <button onclick="window.location.href='login.html'">Login</button>
+        </div>
+        <div class="btn2">
+          <button onclick="window.location.href='register.html'">Register</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function scrollToSection(sectionId) {
+        const section = document.getElementById(sectionId);
+        section.scrollIntoView({ behavior: 'smooth' });
+
+        if (sectionId === 'home') {
+          const image = document.getElementById('home-image');
+          image.classList.add('ease-in');
+        }
+      }
+
+    </script>
+  </nav>
+
+  <!-- Home section -->
+
+  <section id="home" class="home-section">
+    <div class="container-2">
+      <div class="write">
+        <div class="content">
+          <h2>Get Started with Online Exams Now</h2>
+          <p>Experience the convenience of conducting exams online with our user-friendly platform.</p>
+        </div>
+        <div class="explore">
+          <a href="#" onclick="scrollToSection('explore')"><button>Explore Now</button></a>
+        </div>
+      </div>
+      <div class="img-1">
+        <img id="home-image" src="img1.png">
+      </div>
+    </div>
+
+    <div class="container-3">
+      <div class="content-2">
+        <p>An online examination portal for easy assessment and evaluation of student's knowledge and skills.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Features section -->
+
+  <section id="features" class="features-section">
+    <div class="write-2">
+      <div class="content-3">
+        <p>Exam Portal</p>
+        <p class="p11">Conduct Exams Anytime, Anywhere with Ease</p>
+      </div>
+    </div>
+    <div class="container-4">
+      <div class="boxes">
+        <div class="box1">
+          <div class="icon">
+            <i class="fa-light fa-globe"></i>
+          </div>
+          <div class="content-4">
+            <h3>Create Customized Exams</h3>
+            <p class="p12">Tailor exams to meet your specific requirements</p>
+          </div>
+        </div>
+        <div class="box2">
+          <div class="icon">
+            <i class="fa-sharp fa-regular fa-magnifying-glass"></i>
+          </div>
+          <div class="content-4">
+            <h3>Create Customized Exams</h3>
+            <p class="p12">Tailor exams to meet your specific requirements</p>
+          </div>
+        </div>
+        <div class="box3">
+          <div class="icon">
+            <i class="fa-regular fa-phone"></i>
+          </div>
+          <div class="content-4">
+            <h3>Create Customized Exams</h3>
+            <p class="p12">Tailor exams to meet your specific requirements</p>
+          </div>
+        </div>
+        <div class="box4">
+          <div class="icon">
+            <i class="fa-solid fa-chart-line"></i>
+          </div>
+          <div class="content-4">
+            <h3>Create Customized Exams</h3>
+            <p class="p12">Tailor exams to meet your specific requirements</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- Explore section -->
+
+  <section id="explore" class="explore-section">
+    <div class="bg-img">
+      <div class="content-5">
+        <h1>Unlock Your Learning</h1>
+        <h1>Potential</h1>
+        <p>Join us to gain usefull skills and knowledge. Begin your journey today and see yourself grow.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Footer section -->
+
+<section class="footer-section">
+  <div class="company-name">
+    <h1>OES</h1>
+    <p>Online Examination System</p>
+  </div>
+  <hr>
+  <div class="footer">
+    <div class="left">
+      <p><i class="fa-light fa-copyright"></i> 2024 OES, All Rights Reserved.</p>
+    </div>
+    <div class="right">
+      <i class="fa-brands fa-twitter"></i>
+      <i class="fa-brands fa-instagram"></i>
+      <i class="fa-brands fa-facebook"></i>
+    </div>
+  </div>
+</section>
+
+
+  <!-- remove it later -->
+   <!-- <h1 style="height: 500px;"></h1> -->
+</body>
+</html>

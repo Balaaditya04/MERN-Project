@@ -1,0 +1,52 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+h2 {
+  text-align: center;
+  margin-top: 50px;
+}
+
+#profileDropdown {
+  margin-top: 30px;
+}
+
+#profileContainer {
+  display: none;
+  margin-top: 50px;
+  text-align: center;
+}
+
+#createTestContainer {
+  display: none;
+  margin-top: 50px;
+}
+
+#resultContainer {
+  display: none;
+  margin-top: 50px;
+}
+
+#createTestForm {
+  margin-bottom: 30px;
+}
+
+#questionContainer {
+  margin-top: 30px;
+}
+
+#resultTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#resultTable th,
+#resultTable td {
+  border: 1px solid black;
+  padding: 10px;
+  text-align: left;
+}
+
+#resultTable th {
+  background-color: #f2f2f2;
+}

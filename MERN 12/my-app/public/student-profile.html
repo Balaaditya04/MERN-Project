@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Profile</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 2em;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      width: 80%;
+      max-width: 500px;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 1em;
+    }
+
+    .profile-info {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 1em;
+      border-radius: 10px;
+    }
+
+    .profile-info p {
+      margin: 0.5em 0;
+    }
+
+    button {
+      padding: 0.7em 1.5em;
+      margin-top: 1em;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      background: #fff;
+      color: #6a11cb;
+      font-size: 1em;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    button:hover {
+      background: #2575fc;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Profile</h2>
+    <div class="profile-info">
+      <p><strong>Name:</strong> <span id="profileName"></span></p>
+      <p><strong>Email:</strong> <span id="profileEmail"></span></p>
+    </div>
+    <button onclick="window.location.href='student-dashboard.html'">Back to Dashboard</button>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const email = localStorage.getItem('email');
+      const fullName = localStorage.getItem('fullName');
+
+      if (email) {
+        document.getElementById('profileEmail').textContent = email;
+      }
+
+      if (fullName) {
+        document.getElementById('profileName').textContent = fullName;
+      }
+    });
+  </script>
+</body>
+</html>
