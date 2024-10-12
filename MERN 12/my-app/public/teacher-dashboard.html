@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teacher Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="teacher.css">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    h2, h3 {
+      margin: 0.5em 0;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 2em;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      width: 80%;
+      max-width: 500px;
+      text-align: center;
+    }
+
+    .profile-dropdown {
+      margin-bottom: 1em;
+    }
+
+    select {
+      padding: 0.5em;
+      border-radius: 5px;
+      border: none;
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+      outline: none;
+    }
+
+    button {
+      padding: 0.7em 1.5em;
+      margin: 0.5em 0;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      background: #fff;
+      color: #6a11cb;
+      font-size: 1em;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    button:hover {
+      background: #2575fc;
+      color: #fff;
+    }
+
+    #logoutButton {
+      background: #ff4b5c;
+      color: #fff;
+    }
+
+    #logoutButton:hover {
+      background: #ff1e42;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Welcome to the Teacher Dashboard</h2>
+    <div class="profile-dropdown">
+      <label for="profileDropdown">Logged in as:</label>
+      <select id="profileDropdown" onchange="handleProfileChange()">
+        <option id="userNameOption"></option>
+        <option value="profile">Profile</option>
+      </select>
+    </div>
+    <button id="logoutButton">Logout</button>
+
+    <h3>Actions</h3>
+    <button onclick="window.location.href='teacher-profile.html'">Profile</button>
+    <button onclick="window.location.href='create-test.html'">Create Test</button>
+    <button onclick="window.location.href='teacher-results.html'">View Results</button>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const email = localStorage.getItem('email');
+      const fullName = localStorage.getItem('fullName');
+      
+      if (fullName) {
+        document.getElementById('userNameOption').textContent = fullName;
+      }
+
+      document.getElementById('logoutButton').addEventListener('click', () => {
+        localStorage.removeItem('email');
+        localStorage.removeItem('fullName');
+        window.location.href = 'index.html';
+      });
+    });
+
+    function handleProfileChange() {
+      const dropdown = document.getElementById('profileDropdown');
+      if (dropdown.value === 'profile') {
+        window.location.href = 'teacher-profile.html';
+      }
+    }
+  </script>
+</body>
+</html>
+

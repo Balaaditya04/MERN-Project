@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attempt Test</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+  <style>
+    /* Additional CSS for styling */
+    body {
+      padding: 2rem;
+      background-color: #f4f7f6;
+      font-family: Arial, sans-serif;
+    }
+    h2 {
+      margin-bottom: 1rem;
+    }
+    form {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .question {
+      margin-bottom: 1rem;
+      padding: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+    }
+    .question label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    .question input[type="radio"] {
+      margin-right: 10px;
+    }
+    .button-primary {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin-top: 1rem;
+      cursor: pointer;
+      border-radius: 3px;
+    }
+    .button-primary:hover {
+      background-color: #45a049;
+    }
+    .timer {
+      font-size: 18px;
+      font-weight: bold;
+      color: #ff0000;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Attempt Test</h2>
+    <form id="selectSubjectForm">
+      <label for="subjectCode">Select Subject Code:</label>
+      <input type="text" id="subjectCode" name="subjectCode" required>
+      <button type="submit" class="button-primary">Start Test</button>
+    </form>
+    
+    <div id="testContainer" style="display:none;">
+      <div id="timer" class="timer"></div>
+      <form id="testForm">
+        <div id="questionsContainer"></div>
+        <button type="submit" class="button-primary">Submit Test</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    let timerInterval;
+
+    document.getElementById('selectSubjectForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const subjectCode = document.getElementById('subjectCode').value;
+
+      const response = await fetch(`/attempt-test?subjectCode=${subjectCode}`);
+      const result = await response.json();
+
+      if (response.ok) {
+        const { timer, questions } = result;
+        startTimer(timer);
+        document.getElementById('selectSubjectForm').style.display = 'none';
+        const questionsContainer = document.getElementById('questionsContainer');
+        questions.forEach((q, index) => {
+          const questionElement = document.createElement('div');
+          questionElement.className = 'question';
+          questionElement.innerHTML = `
+            <label>${q.questionText}</label><br>
+            ${q.options.map((option, i) => `
+              <input type="radio" name="question${index}" value="${option}" required> ${option}<br>
+            `).join('')}
+          `;
+          questionsContainer.appendChild(questionElement);
+        });
+        document.getElementById('testContainer').style.display = 'block';
+      } else {
+        alert(result.message || 'Error fetching test');
+      }
+    });
+
+    function startTimer(minutes) {
+      const timerElement = document.getElementById('timer');
+      let timeRemaining = minutes * 60;
+      timerElement.textContent = formatTime(timeRemaining);
+
+      timerInterval = setInterval(() => {
+        timeRemaining--;
+        timerElement.textContent = formatTime(timeRemaining);
+
+        if (timeRemaining <= 0) {
+          clearInterval(timerInterval);
+          document.getElementById('testForm').submit();
+        }
+      }, 1000);
+    }
+
+    function formatTime(seconds) {
+      const minutes = Math.floor(seconds / 60);
+      const remainingSeconds = seconds % 60;
+      return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+    }
+
+    document.getElementById('testForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const subjectCode = document.getElementById('subjectCode').value;
+      const answers = Array.from(document.querySelectorAll('.question')).map((q, index) => 
+        q.querySelector(`input[name="question${index}"]:checked`).value
+      );
+
+      const studentEmail = localStorage.getItem('email');
+      const response = await fetch('/submit-test', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ studentEmail, subjectCode, answers }),
+      });
+
+      if (response.ok) {
+        alert('Test submitted successfully');
+        window.location.href = 'student-results.html';
+      } else {
+        alert('Error submitting test');
+      }
+    });
+  </script>
+</body>
+</html>

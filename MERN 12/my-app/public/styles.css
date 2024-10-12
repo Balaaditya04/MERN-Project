@@ -1,0 +1,398 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* Navbar section */
+
+nav{
+  margin-top: 10px;
+  background-color: #e3f2fd;
+}
+
+.container-1{
+  display: flex;
+  gap: 50px;
+  align-items: center;
+}
+
+.container-1 a{
+  text-decoration: none;
+  color: black;
+}
+
+.logo img{
+  height: 10vh;
+  width: 22vh;
+  margin-left: 20px;
+}
+  
+.home{
+  margin-left: 300px;
+}
+
+.buttons{
+  display: flex;
+  gap: 80px;
+  margin-left: 28vh;
+}
+
+.btn1 button{
+  height: 5vh;
+  width: 10vh;
+  border-radius: 5px;
+  background-color: white;
+  cursor: pointer;
+  border: none;
+  font-size: 18px;
+}
+.btn1 button:hover{
+  background-color: rgb(254, 121, 72);
+  color: white;
+}
+
+.btn2 button{
+  height: 5vh;
+  width: 14vh;
+  border-radius: 5px;
+  color: white;
+  background-color: rgb(254, 121, 72);
+  cursor: pointer;
+  border: none;
+  font-size: 16px;
+}
+.btn2 button:hover{
+  background-color: rgb(153, 222, 5);
+  color: rgb(9, 9, 9);
+}
+
+/* Media Queries */
+@media (max-width: 1200px) {
+  .home {
+    margin-left: 200px;
+  }
+  .buttons {
+    margin-left: 20vh;
+  }
+}
+
+@media (max-width: 992px) {
+  .container-1 {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .home {
+    margin-left: 0;
+  }
+  .buttons {
+    margin-left: 0;
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .logo img {
+    height: 8vh;
+    width: 18vh;
+  }
+  .btn1 button, .btn2 button {
+    height: 4vh;
+    width: 8vh;
+    font-size: 14px;
+  }
+  .buttons {
+    gap: 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  .container-1 {
+    gap: 10px;
+  }
+  .btn1 button, .btn2 button {
+    height: 3.5vh;
+    width: 7vh;
+    font-size: 12px;
+  }
+  .buttons {
+    gap: 5px;
+    margin-left: 0;
+  }
+}
+
+
+.home-section{
+  background-color: rgb(248, 245, 245);
+  margin-top: 0vh;
+  height: 110vh;
+}
+
+.container-2{
+  display: flex;
+  gap: 12vh;
+}
+
+.img-1 img{
+  height: 75vh;
+  width: 75vh;
+  margin-top: 10vh;
+}
+
+/* Initial state of the image */
+.img-1 img {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+/* Ease-in animation class */
+.img-1 img.ease-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.write{
+  /* background-color: aquamarine; */
+  margin-left: 10vh;
+  margin-top: 40vh;
+  height: 80px;
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+}
+
+.write .content{
+  height: 100vh;
+  width: 110vh;
+}
+
+.write .content h2{
+  font-size: 40px;
+  font-weight: 400;
+}
+
+.write .content p{
+  margin-top: 20px;
+  font-size: 17px;
+  font-weight: 400;
+}
+
+.explore{
+  margin-top: -80vh;
+}
+
+.explore button{
+  height: 6vh;
+  width: 18vh;
+  border-radius: 5px;
+  border: none;
+  background-color: rgb(38, 144, 231);
+  color: white;
+  cursor: pointer;
+}
+
+.container-3 .content-2{
+  padding: 15px;
+  width: 1400px;
+  background-color: rgb(169, 166, 166);
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+  font-size: 16px;
+  margin-top: 50px;
+  margin-left: 50px;
+  text-align: center;
+  color: white;
+}
+
+
+
+/* features section */
+
+.features-section{
+  margin-top: 90px;
+  background-color: rgb(248, 245, 245);
+  height: 75vh;
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+}
+
+.content-3{
+  padding-top: 50px;
+  text-align: center;
+}
+
+.content-3 p{
+  font-size: 25px;
+}
+
+.content-3 .p11{
+  margin-top: 20px;
+  font-size: 40px;
+}
+
+
+.boxes{
+  margin-top: 52px;
+  margin-left: 100px;
+  display: flex;
+  gap: 25px;
+}
+
+.box1{
+  height: 250px;
+  width: 300px;
+  border: 1px solid black;
+}
+
+.icon i{
+  font-size: 30px;
+  color: rgb(74, 190, 171);
+  margin: 35px 0px 0px 140px;
+}
+
+/* making icons shake */
+.icon:hover {
+  /* Start the shake animation and make the animation last for 0.5 seconds */
+  animation: shake 0.5s;
+
+  /* When the animation is finished, start again */
+  animation-iteration-count: infinite;
+}
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+
+.content-4{
+  margin-top: 25px;
+  text-align: center;
+}
+
+.content-4 .p12{
+  margin-top: 20px;
+}
+
+.box2{
+  height: 250px;
+  width: 300px;
+  border: 1px solid black;
+}
+
+.box3{
+  height: 250px;
+  width: 300px;
+  border: 1px solid black;
+}
+
+.box4{
+  height: 250px;
+  width: 300px;
+  border: 1px solid black;
+}
+
+
+
+/* Explore section */
+
+
+.explore-section {
+  position: relative;
+  margin-top: 80px;
+  background-image: url(img2.jpg);
+  background-size: cover;
+  background-position: center;
+  padding: 200px;
+}
+
+.explore-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6); /* Adjust the opacity as needed */
+  z-index: 1;
+}
+
+.content-5 {
+  position: relative;
+  color: white;
+  z-index: 2;
+  text-align: center;
+}
+
+.content-5 h1{
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+  font-size: 55px;  
+}
+
+.content-5 p{
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+  font-size: 20px;
+  margin-top: 20px;
+}
+
+
+
+/* footer-section */
+
+.footer-section{
+  background-color: #ecf6fd;
+  margin-top: 80px;
+  height: 45vh;
+}
+
+.company-name{
+  padding-top: 35px;
+  text-align: center;
+}
+
+.company-name h1{
+  font-size: 55px;
+}
+
+.company-name p{
+  font-size: 25px;
+}
+
+hr{
+  margin-top: 40px;
+  width: 1400px;
+  margin-left: 50px;
+  color: rgb(204, 201, 201);
+}
+
+.footer{
+  margin-top: 50px;
+  display: flex;
+  gap: 900px;
+  margin-left: 80px;
+}
+
+.left{
+  font-size: 18px;
+}
+
+.right{
+  font-size: 25px;
+  display: flex;
+  gap: 52px;
+}
+
+.right:hover{
+  cursor: pointer;
+}

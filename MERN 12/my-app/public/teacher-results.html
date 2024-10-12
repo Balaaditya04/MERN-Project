@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teacher Results</title>
+  <link rel="stylesheet" href="teacher-results.css">
+</head>
+<body>
+  <h2>View Results</h2>
+  <div id="resultsContainer"></div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const email = localStorage.getItem('email');
+      const response = await fetch(`/fetch-results?teacherEmail=${email}`);
+      const results = await response.json();
+
+      const resultsContainer = document.getElementById('resultsContainer');
+      results.forEach(result => {
+        const resultElement = document.createElement('div');
+        resultElement.className = 'result';
+        resultElement.innerHTML = `
+          <p>Student Email: ${result.studentEmail}</p>
+          <p>Subject Code: ${result.subjectCode}</p>
+          <p>Score: ${result.score}</p>
+        `;
+        resultsContainer.appendChild(resultElement);
+      });
+    });
+  </script>
+</body>
+</html>
